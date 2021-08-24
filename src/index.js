@@ -145,12 +145,12 @@
 // console.log(arr3);
 
 //配列のコピーや結合
-const arr4 = [10, 20];
-const arr5 = [30, 40];
-const arr6 = [...arr4]; //arr4と全く同じ変数を生成。配列のコピー。
-arr6[0] = 100;
-console.log(arr6);
-console.log(arr4); //arr6[0]は影響しない
+// const arr4 = [10, 20];
+// const arr5 = [30, 40];
+// const arr6 = [...arr4]; //arr4と全く同じ変数を生成。配列のコピー。
+// arr6[0] = 100;
+// console.log(arr6);
+// console.log(arr4); //arr4[0]は影響しない
 
 // const arr7 = [...arr4, ...arr5]; //arr4とarr5 を合体した変数を生成。
 // console.log(arr7);
@@ -161,3 +161,92 @@ console.log(arr4); //arr6[0]は影響しない
 // arr8[0] = 100;
 // console.log(arr8);
 // console.log(arr4); //arr8での修正が、arr4にも影響してしまう。
+
+/**
+ * mapやfilterを使った配列の処理
+ * これの登場により、従来のfor文はほぼ使わなくなった
+ */
+// const nameArr = ["田中", "山田", "鈴木"];
+// 従来
+// for (let index = 0; index < nameArr.length; index++) {
+//   console.log(`${index + 1}番目は、${nameArr[index]}です。`);
+// }
+
+//mapの基本的な使い方
+// const nameArr2 = nameArr.map((name) => {
+//   return name;
+// });
+// console.log(nameArr2);
+
+//従来のfor文をmapで書き直したもの。動作は同じ。
+// nameArr.map((name) => console.log(name));
+
+// 配列のindexがない（順番の概念がない）場合、
+//第2引数（ここではindex）に順番を取ることが出来る
+// nameArr.map((name, index) => console.log(`${index + 1}番目は${name}です`));
+
+//filter。条件に一致する配列値のみを取り出すような場合に使用。
+// const numArr = [1, 2, 3, 4, 5];
+// const newNumArr = numArr.filter((num) => {
+//   // return num % 2 === 1;
+//   return num % 2 === 0;
+// });
+// console.log(newNumArr);
+
+//鈴木の場合のみ、「さん」を付与しない
+// const newNameArr = nameArr.map((name) => {
+//   if (name === "鈴木") {
+//     return name;
+//   } else {
+//     return `${name}さん`;
+//   }
+// });
+// console.log(newNameArr);
+
+/**
+ * 三項演算子
+ * ※あまり多用すると可読性が下がるので注意
+ */
+// const val1 = 1 < 0 ? "true" : "false";
+// console.log(val1);
+
+// 例：数値型の場合はカンマ区切りで表示し、それ以外の型の場合はメッセージを表示
+// const num = 1300;
+// const num = "1300";
+// // console.log(num.toLocaleString());
+// const formattedNum =
+//   typeof num === "number" ? num.toLocaleString() : "数値を入力して";
+// console.log(formattedNum);
+
+//例：数値比較の結果により、返答を変えて返す
+// const checkSum = (num1 = 0, num2 = 0) => {
+//   return num1 + num2 > 100 ? "100を超えました" : "100以内です";
+// };
+// console.log(checkSum(99, 2));
+
+/**
+ * 論理演算子の本当の意味
+ */
+//一般的な使い方
+// const flag1 = true;
+// // const flag2 = false;
+// const flag2 = true;
+
+// if (flag1 || flag2) {
+//   console.log("1か2はtrue");
+// }
+// if (flag1 && flag2) {
+//   console.log("1も2もtrue");
+// }
+
+// 「||」は左側がfalseとなる時、右側を返す
+// const num = null;
+// const num = 100;
+// const fee = num || "金額未設定です"; //numがnullの時はfalseを返すので、文字列が入る
+// console.log(fee);
+
+// 「&&」は左側がtrueとなる時、右側を返す
+// const num2 = null;
+const num2 = 100;
+const fee2 = num2 && "何か設定されました";
+console.log(fee2);
